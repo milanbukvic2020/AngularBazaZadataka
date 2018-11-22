@@ -1,0 +1,118 @@
+<mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"IZMENI ZADATAK":"NOVI ZADATAK"}}</span>
+<span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close"   mat-stroked-button (click)="onClose()"
+        tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+
+
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+
+  <mat-grid-list cols="2" rowHeight="600px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+
+        <mat-form-field>
+           <input formControlName="zadatak" matInput placeholder="ZADATAK">
+          <mat-error>OBAVEZNO POPUNITI!</mat-error>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field>
+          <input formControlName="zaposleni" matInput placeholder="ZAPOSLENI KOJEM JE TASK NAMENJEN">
+          <mat-error>OBAVEZNO POPUNITI!</mat-error>
+        </mat-form-field>
+
+
+
+
+
+        <mat-form-field>
+          <input formControlName="pocetakDate" matInput [matDatepicker]="picker" placeholder="DATUM KREIRANJA">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="zDate" matInput [matDatepicker]="picker2" placeholder="ROK ZA ZAVRŠETAK ">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+
+
+
+
+        <mat-form-field class="example-full-width" >
+          <textarea formControlName="opis" matInput placeholder="KRATAK OPIS ZADATKA...">
+          </textarea>
+
+        </mat-form-field>
+
+
+      </div>
+    </mat-grid-tile>
+
+
+
+    <mat-grid-tile>
+      <div class="controles-container">
+        <div class="add-bottom-padding">
+
+          <mat-radio-group formControlName="kat" placeholder="KATEGORIJA">
+            <mat-radio-button value="Softver"> kategorija S</mat-radio-button>
+            <mat-radio-button value="Hardver"> kategorija H</mat-radio-button>
+          </mat-radio-group>
+
+
+        </div>
+
+
+        <mat-form-field>
+          <mat-select formControlName="prior" placeholder="PRIORITET">
+            <mat-option value="NIZAK">NIZAK</mat-option>
+            <mat-option value="SREDNJI">SREDNJI</mat-option>
+            <mat-option value="VISOK">VISOK</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select formControlName="stanje" placeholder="STANJE">
+            <mat-option value="NOV">NOV</mat-option>
+            <mat-option value="U IZRADI">U IZRADI</mat-option>
+            <mat-option value="ZAVRŠEN">ZAVRŠEN</mat-option>
+            <mat-option value="ODGOĐEN">ODGOĐEN</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field layout-fill>
+          <mat-select formControlName="department" placeholder="IZABERI ODELJENJE">
+
+            <ng-container *ngFor="let department of departmentService.array">
+              <mat-option value="{{department.$key}}">{{department.code}}-{{department.name}}-{{department.access}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <div class="add-bottom-padding">
+          <mat-checkbox formControlName="obavezan">OBAVEZAN!</mat-checkbox>
+        </div>
+
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Potvrdi</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Resetuj</button>
+        </div>
+
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
