@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase , AngularFireList } from 'angularfire2/database' ;
-
 import * as _ from 'lodash';
 
 @Injectable({
@@ -10,7 +9,6 @@ export class DepartmentService  {
 
  departmentList: AngularFireList<any>  ;
   array = [] ;
-
 
   constructor( private firebase: AngularFireDatabase ) {
      this.departmentList = this.firebase.list('priority');
@@ -22,10 +20,8 @@ export class DepartmentService  {
         ...item.payload.val()
        };
       });
-      });
-      }
-
-
+     });
+    }
 
  getDepartmentName($key) {
     if ( $key == "0" )
@@ -33,6 +29,5 @@ export class DepartmentService  {
     else{
       return _.find( this.array, (obj) => { return obj.$key == $key ; }) [ 'name' ];
     }
-  }
-
+   }
   }
