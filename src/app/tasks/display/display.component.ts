@@ -9,15 +9,15 @@ import { NotificationService }  from   '../../shared/notification.service' ;
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
-
-   styleUrls: ['./display.component.css'   ]
+  styleUrls: ['./display.component.css'   ]
 })
+
 export class DisplayComponent implements OnInit  {
 
   constructor(private service: DatabaseService,
     private departmentService: DepartmentService,
-     private dialog: MatDialog ,
-     private notificationService: NotificationService ) { }
+    private dialog: MatDialog ,
+    private notificationService: NotificationService ) { }
 
   listData :   MatTableDataSource<any> ;
   displayedColumns : string[] = ['zadatak','zaposleni', 'kat' , 'pocetakDate', 'zDate', 'opis', 'prior' , 'stanje', 'departmentName', 'actions'];
@@ -46,7 +46,7 @@ export class DisplayComponent implements OnInit  {
           });
         };
       });
-  }
+     }
 
   onSearchClear() {
     this.searchKey = "";
@@ -64,8 +64,8 @@ export class DisplayComponent implements OnInit  {
      dialogConfig.autoFocus = true;
      dialogConfig.width = "200%";
      dialogConfig.height = "150";
-      this.dialog.open(TaskComponent,dialogConfig);
-                        }
+     this.dialog.open(TaskComponent,dialogConfig);
+  }
 
   onEdit(row){
     this.service.populateForm(row);
@@ -74,7 +74,7 @@ export class DisplayComponent implements OnInit  {
      dialogConfig.autoFocus = true;
      dialogConfig.width = "200%";
      dialogConfig.height = "150";
-      this.dialog.open(TaskComponent,dialogConfig);
+     this.dialog.open(TaskComponent,dialogConfig);
   }
 
   onDelete($key){
