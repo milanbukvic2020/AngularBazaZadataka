@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef } from '@angular/material';
-
 import { DatabaseService } from '../../shared/database.service';
 import {DepartmentService} from '../../shared/department.service';
 import { NotificationService} from '../../shared/notification.service';
@@ -13,9 +12,9 @@ import { NotificationService} from '../../shared/notification.service';
 export class TaskComponent implements  OnInit {
 
  constructor(private service:DatabaseService ,
-   private departmentService:DepartmentService,
+  private departmentService:DepartmentService,
   private notificationService:NotificationService ,
-   public dialogRef:MatDialogRef<TaskComponent>)
+  public dialogRef:MatDialogRef<TaskComponent>)
     { }
 
 
@@ -43,7 +42,7 @@ onSubmit() {
     }
   }
 onClose() {
-    this.service.form.reset();
+   this.service.form.reset();
    this.service.initializeFormGroup();
    this.dialogRef.close() ;
 
