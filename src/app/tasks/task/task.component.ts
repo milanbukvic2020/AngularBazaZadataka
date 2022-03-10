@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef } from '@angular/material';
-import { DatabaseService } from '../../shared/database.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
+import {DatabaseService} from '../../shared/database.service';
 import {DepartmentService} from '../../shared/department.service';
-import { NotificationService} from '../../shared/notification.service';
+import {NotificationService} from '../../shared/notification.service';
 
 @Component({
   selector: 'app-task',
-   templateUrl: './task.component.html',
-   styleUrls:      ['./task.component.css']
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.css']
 })
+
 export class TaskComponent implements  OnInit {
 
- constructor(private service:DatabaseService ,
+ constructor(
+  private service:DatabaseService ,
   private departmentService:DepartmentService,
   private notificationService:NotificationService ,
   public dialogRef:MatDialogRef<TaskComponent>)
-    { }
-
-
+  { }
 
 ngOnInit(){
   this.service.getEmployees();
   }
+  
 onClear() {
   this.service.form.reset();
   this.service.initializeFormGroup();
@@ -41,12 +42,10 @@ onSubmit() {
       ;
     }
   }
+  
 onClose() {
-   this.service.form.reset();
-   this.service.initializeFormGroup();
-   this.dialogRef.close() ;
-
-
+  this.service.form.reset();
+  this.service.initializeFormGroup();
+  this.dialogRef.close() ;
   }
-
 }
