@@ -6,9 +6,7 @@
 </mat-toolbar>
 
 
-
 <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
-
   <mat-grid-list cols="2" rowHeight="600px">
     <mat-grid-tile>
       <div class="controles-container">
@@ -19,17 +17,10 @@
           <mat-error>OBAVEZNO POPUNITI!</mat-error>
         </mat-form-field>
 
-
-
-
         <mat-form-field>
           <input formControlName="zaposleni" matInput placeholder="ZAPOSLENI KOJEM JE TASK NAMENJEN">
           <mat-error>OBAVEZNO POPUNITI!</mat-error>
         </mat-form-field>
-
-
-
-
 
         <mat-form-field>
           <input formControlName="pocetakDate" matInput [matDatepicker]="picker" placeholder="DATUM KREIRANJA">
@@ -43,10 +34,6 @@
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
-
-
-
-
         <mat-form-field class="example-full-width" >
           <textarea formControlName="opis" matInput placeholder="KRATAK OPIS ZADATKA...">
           </textarea>
@@ -54,23 +41,16 @@
         </mat-form-field>
 
 
-      </div>
+   </div>
     </mat-grid-tile>
-
-
-
-    <mat-grid-tile>
+     <mat-grid-tile>
       <div class="controles-container">
         <div class="add-bottom-padding">
-
           <mat-radio-group formControlName="kat" placeholder="KATEGORIJA">
             <mat-radio-button value="Softver"> kategorija S</mat-radio-button>
             <mat-radio-button value="Hardver"> kategorija H</mat-radio-button>
           </mat-radio-group>
-
-
-        </div>
-
+    </div>
 
         <mat-form-field>
           <mat-select formControlName="prior" placeholder="PRIORITET">
@@ -89,19 +69,15 @@
           </mat-select>
         </mat-form-field>
 
-
-
-
         <mat-form-field layout-fill>
           <mat-select formControlName="department" placeholder="IZABERI ODELJENJE">
 
             <ng-container *ngFor="let department of departmentService.array">
               <mat-option value="{{department.$key}}">{{department.code}}-{{department.name}}-{{department.access}}</mat-option>
             </ng-container>
+            
           </mat-select>
         </mat-form-field>
-
-
 
         <div class="add-bottom-padding">
           <mat-checkbox formControlName="obavezan">OBAVEZAN!</mat-checkbox>
@@ -115,4 +91,4 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-</form>
+ </form>
