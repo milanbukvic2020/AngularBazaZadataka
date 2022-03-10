@@ -8,12 +8,8 @@ import { DatePipe } from '@angular/common';
   providedIn: 'root'
 })
 export class DatabaseService {
-
   constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) { }
-
   employeeList: AngularFireList<any>;
-
-
 
 form: FormGroup = new FormGroup({
     $key: new FormControl(null),
@@ -26,10 +22,8 @@ form: FormGroup = new FormGroup({
     department: new FormControl(0),
     pocetakDate: new FormControl(''),
     zDate: new FormControl(''),
-
     obavezan: new FormControl(false)
   });
-
 
  initializeFormGroup() {
     this.form.setValue({
@@ -39,16 +33,13 @@ form: FormGroup = new FormGroup({
       opis: '',
       stanje: '',
       prior: '',
-
       kat: '1',
       department: 0,
       pocetakDate: '',
       zDate: '',
-
       obavezan: false
     });
   }
-
 
   getEmployees() {
     this.employeeList =   this.firebase.list('tasks');
@@ -59,13 +50,13 @@ form: FormGroup = new FormGroup({
     this.employeeList.push({
       zaposleni: employee.zaposleni,
       zadatak: employee.zadatak,
-       opis: employee.opis,
+      opis: employee.opis,
       stanje: employee.stanje,
       prior: employee.prior,
       kat: employee.kat,
       department: employee.department,
-       pocetakDate: employee.pocetakDate == "" ? "" : this.datePipe.transform(employee.pocetakDate, 'yyyy-MM-dd'),
-       zDate: employee.zDate == "" ? "" : this.datePipe.transform(employee.zDate, 'yyyy-MM-dd'),
+      pocetakDate: employee.pocetakDate == "" ? "" : this.datePipe.transform(employee.pocetakDate, 'yyyy-MM-dd'),
+      zDate: employee.zDate == "" ? "" : this.datePipe.transform(employee.zDate, 'yyyy-MM-dd'),
       obavezan: employee.obavezan
     });
   }
@@ -78,21 +69,20 @@ form: FormGroup = new FormGroup({
         opis: employee.opis,
         stanje: employee.stanje,
         prior: employee.prior,
-
         kat: employee.kat,
         department: employee.department,
-         pocetakDate: employee.pocetakDate == "" ? "" : this.datePipe.transform(employee.pocetakDate, 'yyyy-MM-dd'),
-         zDate: employee.zDate == "" ? "" : this.datePipe.transform(employee.zDate, 'yyyy-MM-dd'),
+        pocetakDate: employee.pocetakDate == "" ? "" : this.datePipe.transform(employee.pocetakDate, 'yyyy-MM-dd'),
+        zDate: employee.zDate == "" ? "" : this.datePipe.transform(employee.zDate, 'yyyy-MM-dd'),
         obavezan: employee.obavezan
       });
   }
 
   deleteEmployee ($key:string) {
-   this.employeeList.remove($key)
+    this.employeeList.remove($key)
    ;
   }
 
   populateForm (employee)     {
-   this.form.setValue(_.omit(employee,'departmentName'));
+    this.form.setValue(_.omit(employee,'departmentName'));
   }
  }
